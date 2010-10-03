@@ -56,7 +56,7 @@ gboolean deviceDetect(LibHalContext *ctx, const char *udi)
 
 void updateStatus()
 {
-	GtkImage *status = GTK_IMAGE( glade_xml_get_widget (gxml, "img_devicestatus") );
+	GtkImage *status = GTK_IMAGE( gtk_builder_get_object (builder, "img_devicestatus") );
 	
 	if ( deviceConnected > 0 ) {
 		gtk_image_set_from_stock (status, "gtk-connect", GTK_ICON_SIZE_LARGE_TOOLBAR);

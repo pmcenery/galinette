@@ -23,7 +23,6 @@
 #include <stdio.h>
 
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 
 #define GALINETTE_WEBSITE "https://sourceforge.net/projects/galinette/"
 
@@ -31,19 +30,24 @@
 #include "callbacks.h"
 #include "galinette-gtk.h"
 #include "hal.h"
-GladeXML *gxml;
+GtkBuilder *builder;
 GMainLoop *mainloop;
+GError* error = NULL;
 
 
 GtkWidget* create_window (void)
 {
 	GtkWidget *window;
+
+	builder = gtk_builder_new ();
+	if (!gtk_builder_add_from_file (builder, UIFILE, &error))
+	{
+		g_warning ("Couldn't load builder file: %s", error->message);
+		g_error_free (error);
+	}
 	
-	gxml = glade_xml_new (GLADEFILE, NULL, NULL);
-	
-	/* This is important */
-	glade_xml_signal_autoconnect (gxml);
-	window = glade_xml_get_widget (gxml, "win_flash");
+	window = GTK_WIDGET( gtk_builder_get_object (builder, "win_flash"));
+	gtk_builder_connect_signals (builder, NULL);
 	
 	return window;
 }
@@ -64,7 +68,7 @@ int main (int argc, char *argv[])
 	gtk_widget_show (window);
 	halinitmain();
 
-	aboutwin = GTK_ABOUT_DIALOG( glade_xml_get_widget (gxml, "aboutdialog") );
+	aboutwin = GTK_ABOUT_DIALOG( gtk_builder_get_object (builder, "aboutdialog") );
 	g_signal_connect (aboutwin, "delete-event", G_CALLBACK (gtk_widget_hide_on_delete), NULL);
 	gtk_about_dialog_set_authors(aboutwin, authors);
 	gtk_about_dialog_set_version(aboutwin, GALINETTE_VERSION);

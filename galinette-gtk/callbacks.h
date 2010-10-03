@@ -18,10 +18,9 @@
 
 
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 
 
-extern GladeXML *gxml;
+extern GtkBuilder *builder;
 extern GMainLoop *mainloop;
 extern guint deviceConnected;
 

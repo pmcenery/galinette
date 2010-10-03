@@ -23,7 +23,7 @@
 #include "callbacks.h"
 #include "galinette-gtk.h"
 
-extern GladeXML *gxml;
+extern GtkBuilder *builder;
 
 
 void win_flash_delete_event_cb (GtkWidget *widget, gpointer data)
@@ -40,7 +40,7 @@ void imnui_quit_activate_cb (GtkWidget *widget, gpointer data)
 
 void imnui_about_activate_cb (GtkWidget *widget, gpointer data)
 {
-	GtkWidget *aboutdialog = GTK_WIDGET( glade_xml_get_widget (gxml, "aboutdialog") );
+	GtkWidget *aboutdialog = GTK_WIDGET( gtk_builder_get_object (builder, "aboutdialog") );
 	
 	gtk_widget_show(aboutdialog);
 }
@@ -48,7 +48,7 @@ void imnui_about_activate_cb (GtkWidget *widget, gpointer data)
 
 void aboutdialog_close_cb (GtkWidget *widget, gpointer data)
 {
-	GtkWidget *aboutdialog = GTK_WIDGET( glade_xml_get_widget (gxml, "aboutdialog") );
+	GtkWidget *aboutdialog = GTK_WIDGET( gtk_builder_get_object (builder, "aboutdialog") );
 	
 	gtk_widget_hide(aboutdialog);
 }

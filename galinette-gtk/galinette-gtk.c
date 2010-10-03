@@ -28,7 +28,7 @@ const unsigned char *firmware_buf = NULL;
 guint loadFirmware(char *path)
 {
 	firmwareSize = galinette_loadFirmware(path);
-	GtkStatusbar *status = GTK_STATUSBAR( glade_xml_get_widget (gxml, "sb_main") );
+	GtkStatusbar *status = GTK_STATUSBAR( gtk_builder_get_object (builder, "sb_main") );
 	
 	if ( firmwareSize > 0 && galinette_checkFirmwareIntegrity() == 0 ) {
 		firmwareLoaded = TRUE;
@@ -52,7 +52,7 @@ guint loadFirmware(char *path)
 
 void update_flash_button_state()
 {
-	GtkWidget *flash = glade_xml_get_widget (gxml, "but_flash");
+	GtkWidget *flash = GTK_WIDGET( gtk_builder_get_object (builder, "but_flash"));
 	gtk_widget_set_sensitive(flash, deviceConnected && firmwareLoaded);
 }
 
@@ -69,8 +69,8 @@ void startFlashing()
 
 void progressbar(unsigned long min, unsigned long max, unsigned long val, const char *comment)
 {
-	GtkProgressBar *pg = GTK_PROGRESS_BAR( glade_xml_get_widget (gxml, "pb_flash") );
-	GtkStatusbar *status = GTK_STATUSBAR( glade_xml_get_widget (gxml, "sb_main") );
+	GtkProgressBar *pg = GTK_PROGRESS_BAR( gtk_builder_get_object (builder, "pb_flash") );
+	GtkStatusbar *status = GTK_STATUSBAR( gtk_builder_get_object (builder, "sb_main") );
 	
 	gdouble percent = (((float)val+0.5-(float)min)/(float)max-(float)min);
 

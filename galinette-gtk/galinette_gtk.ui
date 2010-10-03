@@ -1,117 +1,103 @@
 <?xml version="1.0"?>
-<!--
- *  Copyright (C) Boris Lechner 2009 2010 <boris.lechner.dev@gmail.com>
- *   
- *  This file is part of Galinette.
- *
- *  Galinette is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 2 of the License.
- *
- *  Galinette is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- * 
- *  You should have received a copy of the GNU General Public License along
- *  with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
--->
-<glade-interface>
-  <!-- interface-requires gtk+ 2.16 -->
+<interface>
+  <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy toplevel-contextual -->
-  <widget class="GtkWindow" id="win_flash">
+  <object class="GtkWindow" id="win_flash">
     <property name="title" translatable="yes">Galinette</property>
     <property name="destroy_with_parent">True</property>
+    <accel-groups>
+      <group name="accelgroup1"/>
+    </accel-groups>
     <signal name="delete_event" handler="win_flash_delete_event_cb"/>
     <child>
-      <widget class="GtkVBox" id="vbox1">
+      <object class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
-        <property name="orientation">vertical</property>
         <child>
-          <widget class="GtkMenuBar" id="menubar">
+          <object class="GtkMenuBar" id="menubar">
             <property name="visible">True</property>
             <child>
-              <widget class="GtkMenuItem" id="mnu_file">
+              <object class="GtkMenuItem" id="mnu_file">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">_File</property>
                 <property name="use_underline">True</property>
-                <child>
-                  <widget class="GtkMenu" id="menu1">
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu1">
                     <property name="visible">True</property>
                     <child>
-                      <widget class="GtkImageMenuItem" id="imnui_quit">
+                      <object class="GtkImageMenuItem" id="imnui_quit">
                         <property name="label">gtk-quit</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                        <property name="accel_group">accelgroup1</property>
                         <signal name="activate" handler="imnui_quit_activate_cb"/>
-                      </widget>
+                      </object>
                     </child>
-                  </widget>
+                  </object>
                 </child>
-              </widget>
+              </object>
             </child>
             <child>
-              <widget class="GtkMenuItem" id="mnu_about">
+              <object class="GtkMenuItem" id="mnu_about">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">_Help</property>
                 <property name="use_underline">True</property>
-                <child>
-                  <widget class="GtkMenu" id="menu3">
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu3">
                     <property name="visible">True</property>
                     <child>
-                      <widget class="GtkImageMenuItem" id="imnui_about">
+                      <object class="GtkImageMenuItem" id="imnui_about">
                         <property name="label">gtk-about</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                        <property name="accel_group">accelgroup1</property>
                         <signal name="activate" handler="imnui_about_activate_cb"/>
-                      </widget>
+                      </object>
                     </child>
-                  </widget>
+                  </object>
                 </child>
-              </widget>
+              </object>
             </child>
-          </widget>
+          </object>
           <packing>
             <property name="expand">False</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkFileChooserButton" id="fcb_loadfirmware">
+          <object class="GtkFileChooserButton" id="fcb_loadfirmware">
             <property name="visible">True</property>
             <property name="border_width">10</property>
             <signal name="file_set" handler="fcb_loadfirmware_file_set_cb"/>
-          </widget>
+          </object>
           <packing>
             <property name="fill">False</property>
             <property name="position">1</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkHBox" id="hbox1">
+          <object class="GtkHBox" id="hbox1">
             <property name="height_request">48</property>
             <property name="visible">True</property>
             <property name="border_width">10</property>
             <child>
-              <widget class="GtkProgressBar" id="pb_flash">
+              <object class="GtkProgressBar" id="pb_flash">
                 <property name="visible">True</property>
-              </widget>
+              </object>
               <packing>
                 <property name="position">0</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkHBox" id="hbox2">
+              <object class="GtkHBox" id="hbox2">
                 <property name="width_request">10</property>
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <child>
                   <placeholder/>
                 </child>
-              </widget>
+              </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
@@ -119,44 +105,43 @@
               </packing>
             </child>
             <child>
-              <widget class="GtkButton" id="but_flash">
+              <object class="GtkButton" id="but_flash">
                 <property name="label" translatable="yes">Flash</property>
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <signal name="clicked" handler="but_flash_clicked_cb"/>
-              </widget>
+              </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
                 <property name="position">2</property>
               </packing>
             </child>
-          </widget>
+          </object>
           <packing>
             <property name="fill">False</property>
             <property name="position">2</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkHBox" id="hbox3">
+          <object class="GtkHBox" id="hbox3">
             <property name="visible">True</property>
             <child>
-              <widget class="GtkStatusbar" id="sb_main">
+              <object class="GtkStatusbar" id="sb_main">
                 <property name="visible">True</property>
                 <property name="spacing">2</property>
                 <property name="has_resize_grip">False</property>
-              </widget>
+              </object>
               <packing>
                 <property name="position">0</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkVSeparator" id="vseparator1">
+              <object class="GtkVSeparator" id="vseparator1">
                 <property name="visible">True</property>
-                <property name="orientation">vertical</property>
-              </widget>
+              </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
@@ -164,30 +149,30 @@
               </packing>
             </child>
             <child>
-              <widget class="GtkImage" id="img_devicestatus">
+              <object class="GtkImage" id="img_devicestatus">
                 <property name="width_request">40</property>
                 <property name="visible">True</property>
                 <property name="has_tooltip">True</property>
-                <property name="tooltip" translatable="yes">Vario deconnect&#xE9;</property>
+                <property name="tooltip_text" translatable="yes">Vario deconnect&#xE9;</property>
                 <property name="stock">gtk-disconnect</property>
                 <property name="icon-size">3</property>
-              </widget>
+              </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
                 <property name="position">2</property>
               </packing>
             </child>
-          </widget>
+          </object>
           <packing>
             <property name="expand">False</property>
             <property name="position">3</property>
           </packing>
         </child>
-      </widget>
+      </object>
     </child>
-  </widget>
-  <widget class="GtkAboutDialog" id="aboutdialog">
+  </object>
+  <object class="GtkAboutDialog" id="aboutdialog">
     <property name="border_width">5</property>
     <property name="modal">True</property>
     <property name="destroy_with_parent">True</property>
@@ -540,25 +525,25 @@ Public License instead of this License.
     <signal name="close" handler="aboutdialog_close_cb"/>
     <signal name="response" handler="aboutdialog_close_cb"/>
     <child internal-child="vbox">
-      <widget class="GtkVBox" id="dialog-vbox1">
+      <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
-        <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child>
           <placeholder/>
         </child>
         <child internal-child="action_area">
-          <widget class="GtkHButtonBox" id="dialog-action_area1">
+          <object class="GtkHButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
             <property name="layout_style">end</property>
-          </widget>
+          </object>
           <packing>
             <property name="expand">False</property>
             <property name="pack_type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
-      </widget>
+      </object>
     </child>
-  </widget>
-</glade-interface>
+  </object>
+  <object class="GtkAccelGroup" id="accelgroup1"/>
+</interface>
