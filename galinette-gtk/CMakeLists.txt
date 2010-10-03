@@ -3,7 +3,7 @@ find_package      (PkgConfig)
 pkg_check_modules (DBUS       REQUIRED   dbus-1>=1.2.12)
 pkg_check_modules (DBUS-GLIB  REQUIRED   dbus-glib-1>=0.80)
 pkg_check_modules (GTK2       REQUIRED   gtk+-2.0>=2.16.1)
-pkg_check_modules (HAL        REQUIRED   hal>=0.5.12)
+pkg_check_modules (UDEV       REQUIRED   libudev>=151)
 
 # Main config
 add_definitions(-DUIFILE="${CMAKE_INSTALL_PREFIX}/${sharedir}/galinette_gtk.ui")
