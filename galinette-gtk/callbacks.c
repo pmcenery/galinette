@@ -64,4 +64,3 @@ void but_flash_clicked_cb(GtkWidget *widget, gpointer data)
 {
 	startFlashing();
 }
-

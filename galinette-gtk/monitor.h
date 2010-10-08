@@ -16,8 +16,21 @@
  *  with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <hal/libhal.h>
-gboolean deviceDetect(LibHalContext *ctx, const char *udi);
-int halinitmain();
-gboolean isB1Device( const char *udi );
+/*
+ * Constants
+ */
+#define B1_VENDOR_ID	"0403"
+#define B1_MODEL_ID	"6001"
+
+/*
+ * Includes
+ */
+#include <gudev/gudev.h>
+
+/*
+ * Functions
+ */
+gboolean deviceDetect(GUdevClient *client);
+gboolean isB1Device(GUdevDevice *device);
+int monitormain();
 void updateStatus();

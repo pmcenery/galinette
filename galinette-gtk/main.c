@@ -29,7 +29,7 @@
 
 #include "callbacks.h"
 #include "galinette-gtk.h"
-#include "hal.h"
+#include "monitor.h"
 GtkBuilder *builder;
 GMainLoop *mainloop;
 GError* error = NULL;
@@ -66,7 +66,7 @@ int main (int argc, char *argv[])
 
 	window = create_window ();
 	gtk_widget_show (window);
-	halinitmain();
+	monitormain();
 
 	aboutwin = GTK_ABOUT_DIALOG( gtk_builder_get_object (builder, "aboutdialog") );
 	g_signal_connect (aboutwin, "delete-event", G_CALLBACK (gtk_widget_hide_on_delete), NULL);
